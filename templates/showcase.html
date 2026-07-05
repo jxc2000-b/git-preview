@@ -1,0 +1,21 @@
+{{ define "showcase" }}
+{{ if .showcase }}
+{{ $repo := .name }}
+{{ $ref := .showcaseref }}
+<section class="showcase">
+  {{ range .showcase }}
+  <figure class="showcase-item">
+    {{ if eq .Kind "image" }}
+    <img src="/{{ $repo }}/showcase/{{ $ref }}/{{ .Asset }}" alt="{{ .Caption }}" loading="lazy">
+    {{ else if eq .Kind "video" }}
+    <video controls preload="metadata" src="/{{ $repo }}/showcase/{{ $ref }}/{{ .Asset }}"></video>
+    {{ else if eq .Kind "html" }}
+    <iframe sandbox="allow-scripts" src="/{{ $repo }}/showcase/{{ $ref }}/{{ .Asset }}"
+            style="height: {{ .IframeHeight }}px" title="{{ .Caption }}"></iframe>
+    {{ end }}
+    {{ if .Caption }}<figcaption>{{ .Caption }}</figcaption>{{ end }}
+  </figure>
+  {{ end }}
+</section>
+{{ end }}
+{{ end }}

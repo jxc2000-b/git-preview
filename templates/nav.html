@@ -3,7 +3,6 @@
     <ul>
     {{ if .name }}
     <li><a href="/{{ .name }}">summary</a>
-    <li><a href="/{{ .name }}/refs">refs</a>
       {{ if .ref }}
       <li><a href="/{{ .name }}/tree/{{ .ref }}/">tree</a>
       <li><a href="/{{ .name }}/log/{{ .ref }}">log</a>

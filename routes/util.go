@@ -3,12 +3,11 @@ package routes
 import (
 	"io/fs"
 	"log"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 
-	"git.icyphox.sh/legit/git"
+	"github.com/jxc2000-b/git-preview/git"
 )
 
 func isGoModule(gr *git.GitRepo) bool {
@@ -48,6 +47,27 @@ func (d *deps) isIgnored(name string) bool {
 	}
 
 	return false
+}
+
+// soloRepo returns the repo name if the scan path holds exactly one
+// visible repo — the site then behaves as a single-project preview
+// (no index page, no "all repos" backlink).
+func (d *deps) soloRepo() string {
+	dirs, err := os.ReadDir(d.c.Repo.ScanPath)
+	if err != nil {
+		return ""
+	}
+	solo := ""
+	for _, dir := range dirs {
+		if !dir.IsDir() || d.isIgnored(dir.Name()) {
+			continue
+		}
+		if solo != "" {
+			return ""
+		}
+		solo = dir.Name()
+	}
+	return solo
 }
 
 type repoInfo struct {
@@ -104,15 +124,3 @@ func (d *deps) category(path string) string {
 	return strings.TrimPrefix(filepath.Dir(strings.TrimPrefix(path, d.c.Repo.ScanPath)), string(os.PathSeparator))
 }
 
-func setContentDisposition(w http.ResponseWriter, name string) {
-	h := "inline; filename=\"" + name + "\""
-	w.Header().Add("Content-Disposition", h)
-}
-
-func setGZipMIME(w http.ResponseWriter) {
-	setMIME(w, "application/gzip")
-}
-
-func setMIME(w http.ResponseWriter, mime string) {
-	w.Header().Add("Content-Type", mime)
-}

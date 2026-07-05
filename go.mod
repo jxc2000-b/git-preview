@@ -1,4 +1,4 @@
-module git.icyphox.sh/legit
+module github.com/jxc2000-b/git-preview
 
 go 1.22.0
 

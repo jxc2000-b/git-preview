@@ -5,7 +5,12 @@
   <body>
     {{ template "nav" . }}
     <main>
-      <p>{{ .path }} (<a style="color: gray" href="?raw=true">view raw</a>)</p>
+      <p>{{ .path }}</p>
+      <div class="file-view{{ if .showcase }} has-showcase{{ end }}">
+      <div class="file-code">
+      {{ if .hidden }}
+      <p class="diff-truncated">file contents hidden</p>
+      {{ else }}
       {{if .chroma }}
       <div class="chroma-file-wrapper">
       {{ .content }}
@@ -30,6 +35,17 @@
       </table>
       </div>
       {{end}}
+      {{ if .truncated }}
+      <p class="diff-truncated">&hellip; preview truncated</p>
+      {{ end }}
+      {{ end }}
+      </div>
+      {{ if .showcase }}
+      <aside class="file-showcase">
+        {{ template "showcase" . }}
+      </aside>
+      {{ end }}
+      </div>
     </main>
   </body>
 </html>

@@ -12,9 +12,7 @@
     {{ else if .files }}
     <title>{{ .meta.Title }} &mdash; {{ .name }} ({{ .ref }})</title>
     {{ else if .commit }}
-    <title>{{ .meta.Title }} &mdash; {{ .name }}: {{ .commit.This }}</title>
-    {{ else if .branches }}
-    <title>{{ .meta.Title }} &mdash; {{ .name }}: refs</title>
+    <title>{{ .meta.Title }} &mdash; {{ .name }}: commit</title>
     {{ else if .commits }}
     {{ if .log }}
     <title>{{ .meta.Title }} &mdash; {{ .name }}: log</title>

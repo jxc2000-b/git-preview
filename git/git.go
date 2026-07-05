@@ -152,6 +152,72 @@ func (g *GitRepo) FileContent(path string) (string, error) {
 	}
 }
 
+// Decoration is a ref label (HEAD, branch, tag) attached to a commit.
+type Decoration struct {
+	Name string
+	Type string // "head", "branch" or "tag"
+}
+
+// Decorations maps commit hashes to the refs pointing at them.
+func (g *GitRepo) Decorations() map[string][]Decoration {
+	decos := make(map[string][]Decoration)
+
+	if head, err := g.r.Head(); err == nil {
+		h := head.Hash().String()
+		decos[h] = append(decos[h], Decoration{Name: "HEAD", Type: "head"})
+	}
+
+	if tags, err := g.r.Tags(); err == nil {
+		_ = tags.ForEach(func(ref *plumbing.Reference) error {
+			hash := ref.Hash()
+			// Annotated tags point at a tag object; resolve to the commit.
+			if obj, err := g.r.TagObject(hash); err == nil {
+				hash = obj.Target
+			}
+			h := hash.String()
+			decos[h] = append(decos[h], Decoration{Name: ref.Name().Short(), Type: "tag"})
+			return nil
+		})
+	}
+
+	if branches, err := g.r.Branches(); err == nil {
+		_ = branches.ForEach(func(ref *plumbing.Reference) error {
+			h := ref.Hash().String()
+			decos[h] = append(decos[h], Decoration{Name: ref.Name().Short(), Type: "branch"})
+			return nil
+		})
+	}
+
+	return decos
+}
+
+// FileContentBytes returns the raw bytes of a blob, including binary
+// files (unlike FileContent, which substitutes a placeholder).
+func (g *GitRepo) FileContentBytes(path string) ([]byte, error) {
+	c, err := g.r.CommitObject(g.h)
+	if err != nil {
+		return nil, fmt.Errorf("commit object: %w", err)
+	}
+
+	tree, err := c.Tree()
+	if err != nil {
+		return nil, fmt.Errorf("file tree: %w", err)
+	}
+
+	file, err := tree.File(path)
+	if err != nil {
+		return nil, err
+	}
+
+	reader, err := file.Blob.Reader()
+	if err != nil {
+		return nil, err
+	}
+	defer reader.Close()
+
+	return io.ReadAll(reader)
+}
+
 func (g *GitRepo) Tags() ([]*TagReference, error) {
 	iter, err := g.r.Tags()
 	if err != nil {

@@ -46,11 +46,17 @@ func Read(f string) (*Config, error) {
 	if c.Repo.ScanPath, err = filepath.Abs(c.Repo.ScanPath); err != nil {
 		return nil, err
 	}
-	if c.Dirs.Templates, err = filepath.Abs(c.Dirs.Templates); err != nil {
-		return nil, err
+	// Empty dirs mean "use the assets embedded in the binary"; the
+	// caller fills them in (see main.go).
+	if c.Dirs.Templates != "" {
+		if c.Dirs.Templates, err = filepath.Abs(c.Dirs.Templates); err != nil {
+			return nil, err
+		}
 	}
-	if c.Dirs.Static, err = filepath.Abs(c.Dirs.Static); err != nil {
-		return nil, err
+	if c.Dirs.Static != "" {
+		if c.Dirs.Static, err = filepath.Abs(c.Dirs.Static); err != nil {
+			return nil, err
+		}
 	}
 
 	return &c, nil

@@ -248,15 +248,6 @@ a:hover {
   padding-top: 0.7em;
 }
 
-.refs pre {
-  white-space: pre-wrap;
-  padding-bottom: 0.5rem;
-}
-
-.refs strong {
-  padding-right: 1em;
-}
-
 .line-numbers {
   white-space: pre-line;
   -moz-user-select: -moz-none;
@@ -329,4 +320,138 @@ a:hover {
   pre {
     font-size: 0.8rem;
   }
+}
+
+.showcase {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.showcase-item {
+  margin: 0;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.showcase-item img,
+.showcase-item video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.showcase-item iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.showcase-item figcaption {
+  padding-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.log-table th {
+  text-align: left;
+  color: var(--gray);
+  font-weight: normal;
+  padding: 0.25rem 0.75rem 0.25rem 0;
+  border-bottom: 1px solid var(--medium-gray);
+}
+
+.log-table td {
+  padding: 0.3rem 0.75rem 0.3rem 0;
+  border-bottom: 1px solid var(--light-gray);
+  white-space: nowrap;
+}
+
+.log-table .log-msg {
+  width: 100%;
+  white-space: normal;
+}
+
+.log-table .log-age,
+.log-table .log-files {
+  color: var(--gray);
+}
+
+.deco {
+  display: inline-block;
+  margin-left: 0.4em;
+  padding: 0 0.4em;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-family: var(--mono-font);
+  vertical-align: 1px;
+  user-select: none;
+}
+
+.deco-head {
+  color: #c74343;
+  border-color: #c74343;
+  background: rgba(199, 67, 67, 0.12);
+}
+
+.deco-tag {
+  color: #b07d2f;
+  border-color: #b07d2f;
+  background: rgba(176, 125, 47, 0.12);
+}
+
+.deco-branch {
+  color: #4a8f3c;
+  border-color: #4a8f3c;
+  background: rgba(74, 143, 60, 0.12);
+}
+
+.file-view {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.file-view .file-code {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.file-showcase {
+  flex: 0 0 340px;
+  position: sticky;
+  top: 1rem;
+}
+
+.file-showcase .showcase {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .file-view {
+    flex-direction: column;
+  }
+
+  .file-showcase {
+    position: static;
+    flex: none;
+    width: 100%;
+  }
+}
+
+.diff-truncated {
+  color: var(--gray);
+  font-style: italic;
+  font-size: 0.85rem;
 }

@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"git.icyphox.sh/legit/git"
+	"github.com/jxc2000-b/git-preview/git"
 	"github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/alecthomas/chroma/v2/lexers"
 	"github.com/alecthomas/chroma/v2/styles"
@@ -142,9 +142,3 @@ func (d *deps) showFile(content string, data map[string]any, w http.ResponseWrit
 	}
 }
 
-func (d *deps) showRaw(content string, w http.ResponseWriter) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "text/plain")
-	w.Write([]byte(content))
-	return
-}
