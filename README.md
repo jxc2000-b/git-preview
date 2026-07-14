@@ -1,7 +1,9 @@
 # Originally Forked from [legit](https://github.com/icyphox/legit)
 An opinionated take on what a static git web frontend could be. Preview you repository in a customizeable fashion for easy deployment as a stripped-down silly showcase website. 
 
+example: https://jxc2000-b.github.io/git-preview/
 
+host [images](https://jxc2000-b.github.io/git-preview/blob/main/main.go/) alongside your code, [interactive html demos](https://jxc2000-b.github.io/git-preview/blob/main/go.mod/) and truncate your code securely.
 ## Adding it to a new project
 
 ```sh
