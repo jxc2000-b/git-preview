@@ -95,12 +95,12 @@ git push preview-repos/my-app main
 ```sh
 git-preview -config config.yaml
 # browse at :5555
-git-preview -config config.yaml -export .showcase/out # static build
+git-preview -config config.yaml -export showcase/out # static build
 ```
 
 ## Local preview of an export
 ```sh
-cd .showcase/out && python3 -m http.server 5556
+cd showcase/out && python3 -m http.server 5556
 ```
 
 ## Example deploy with Github Pages
@@ -108,8 +108,8 @@ cd .showcase/out && python3 -m http.server 5556
 ```yaml
 - uses: actions/setup-go@v5
 - run: go install github.com/jxc2000-b/git-preview@latest
-- run: git-preview -config preview.yaml -export .showcase/out
-- run: npx wrangler pages deploy .showcase/out --project-name=<name>
+- run: git-preview -config preview.yaml -export showcase/out
+- run: npx wrangler pages deploy showcase/out --project-name=<name>
 ```
 
 Much thanks to the original developers @icyphox
