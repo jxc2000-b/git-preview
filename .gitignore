@@ -3,3 +3,4 @@ git-preview
 result
 .DS_Store
 DEPLOY.md
+.showcase/out
