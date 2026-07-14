@@ -12,6 +12,8 @@ git clone --bare . preview-repos/my-app # clone your app here and re-push here t
 
 ## Create a conifg.yaml file, example config: 
 
+`config.yaml`
+
 ```yaml
 repo:
   scanPath: ./preview-repos
@@ -91,9 +93,9 @@ git push preview-repos/my-app main
 
 ## Generate your preview files
 ```sh
-git-preview -config preview.yaml
+git-preview -config config.yaml
 # browse at :5555
-git-preview -config preview.yaml -export .showcase/out # static build
+git-preview -config config.yaml -export .showcase/out # static build
 ```
 
 ## Local preview of an export

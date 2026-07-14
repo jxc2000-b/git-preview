@@ -1,13 +1,10 @@
 # Default preview setting
 defaultPreview: full
 
-# Displayed on the repository landing page
 landing:
   - asset: images/go_users.jpeg
     caption: You can add also images like this
 
-
-# Displayed when viewing specific files
 files:
   "config.yaml":
     preview: full
@@ -19,15 +16,18 @@ files:
     assets:
       - asset: images/huh.jpeg
         caption: Imagine this were something cool about this file
-  "showcase/showcase.go":
+  "go.mod":
     preview: full
     assets: 
       - asset: html/interactive.html
         caption: You can add interactive demos too
         height: 64
+  "go.sum":
+    preview: full
+    assets: 
+      - asset: images/hehe.html
+        caption: Hmmmmm
 
-
-# Displayed on a particular commit page
 commits:
   "bdb3273":
     - asset: images/andale.jpeg
