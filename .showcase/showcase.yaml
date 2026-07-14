@@ -10,7 +10,7 @@ files:
     preview: full
     assets:
       - asset: images/beluga.jpeg
-        caption: Imagine these were important files detailing features or architecture 
+        caption: Imagine this was an important image detailing features or architecture 
   "main.go":
     preview: full
     assets:
