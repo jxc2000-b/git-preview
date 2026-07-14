@@ -41,13 +41,23 @@ jobs:
       - name: Generate static site
         run: go run . -config config.yaml -export showcase/out
 
+      # GitHub project Pages serves the artifact at /<repository>/, while
+      # git-preview exports each repository into its own directory. Make that
+      # repository directory the artifact root and prefix the shared assets.
+      - name: Prepare site for GitHub project Pages
+        env:
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+        run: |
+          cp -R showcase/out/static "showcase/out/$REPOSITORY_NAME/static"
+          find "showcase/out/$REPOSITORY_NAME" -type f -name '*.html' -exec sed -i "s|\"/static/|\"/$REPOSITORY_NAME/static/|g" {} +
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: showcase/out
+          path: showcase/out/${{ github.event.repository.name }}
 
       - name: Deploy to GitHub Pages
         id: deployment
