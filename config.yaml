@@ -11,7 +11,7 @@ repo:
 
 meta: 
   title: git-preview
-  description: not a full git forge
+  description: a static git web frontend but with images and html previews + code truncation
   syntaxHighlight: monokailight
 
 server:
