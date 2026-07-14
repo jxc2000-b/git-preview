@@ -10,7 +10,7 @@ repo:
     - main
 
 meta: 
-  title: git-preview's preview
+  title: git-preview
   description: not a full git forge
   syntaxHighlight: monokailight
 
