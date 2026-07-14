@@ -25,7 +25,7 @@ files:
   "go.sum":
     preview: full
     assets: 
-      - asset: images/hehe.html
+      - asset: images/hehe.jpeg
         caption: Hmmmmm
 
 commits:
