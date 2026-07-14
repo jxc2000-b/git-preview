@@ -1,0 +1,27 @@
+# Displayed on the repository landing page.
+landing:
+  - asset: images/go_users.jpeg
+    caption: You can add images like this
+  - asset: html/interactive.html
+    caption: Interactive demonstration
+    height: 600
+
+# Displayed when viewing specific files.
+files:
+  "config.yaml":
+    preview: full
+    assets:
+      - asset: images/beluga.jpeg
+        caption: Imagine these were important files detailing features or architecture 
+
+  "main.go":
+    preview: full
+    assets:
+      - asset: images/hehe.jpeg
+        caption: This is a cat
+
+# Displayed on a particular commit page.
+# commits:
+#   "2b223c1":
+#     - asset: screenshots/release.png
+#       caption: Result introduced by this commit
