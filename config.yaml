@@ -1,5 +1,5 @@
 repo:
-  scanPath: /var/www/git
+  scanPath: ./preview-repos
   readme:
     - readme
     - README
@@ -8,13 +8,13 @@ repo:
   mainBranch:
     - master
     - main
-dirs:
-  templates: ./templates
-  static: ./static
-meta:
-  title: icy does git
-  description: come get your free software
+
+meta: 
+  title: git-preview's preview
+  description: not a full git forge
+  syntaxHighlight: monokailight
+
 server:
-  name: git.icyphox.sh
-  host: 0.0.0.0
+  name: localhost
+  host: 127.0.0.1
   port: 5555

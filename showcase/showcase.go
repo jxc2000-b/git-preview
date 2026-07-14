@@ -56,9 +56,10 @@ func (f *FileEntry) UnmarshalYAML(value *yaml.Node) error {
 }
 
 type Manifest struct {
-	Landing []Asset              `yaml:"landing"`
-	Files   map[string]FileEntry `yaml:"files"`
-	Commits map[string][]Asset   `yaml:"commits"`
+	DefaultPreview string               `yaml:"defaultPreview"`
+	Landing        []Asset              `yaml:"landing"`
+	Files          map[string]FileEntry `yaml:"files"`
+	Commits        map[string][]Asset   `yaml:"commits"`
 }
 
 // Kind classifies an asset by extension: "image", "video", "html" or "".
@@ -135,10 +136,19 @@ func (m *Manifest) ForFile(p string) []Asset {
 }
 
 // PreviewMode returns the blob-view policy for a file: "full", "none",
-// or "truncated" (the default for unlisted files or unset entries).
+// or "truncated". A per-file policy takes precedence over defaultPreview;
+// when neither is set, the mode remains "truncated" for compatibility.
 func (m *Manifest) PreviewMode(p string) string {
 	if m != nil {
 		switch m.Files[path.Clean(p)].Preview {
+		case "full":
+			return "full"
+		case "none":
+			return "none"
+		case "truncated":
+			return "truncated"
+		}
+		switch m.DefaultPreview {
 		case "full":
 			return "full"
 		case "none":

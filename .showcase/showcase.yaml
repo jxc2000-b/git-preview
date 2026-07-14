@@ -1,27 +1,34 @@
-# Displayed on the repository landing page.
+# Default preview setting
+defaultPreview: full
+
+# Displayed on the repository landing page
 landing:
   - asset: images/go_users.jpeg
-    caption: You can add images like this
-  - asset: html/interactive.html
-    caption: Interactive demonstration
-    height: 600
+    caption: You can add also images like this
 
-# Displayed when viewing specific files.
+
+# Displayed when viewing specific files
 files:
   "config.yaml":
     preview: full
     assets:
       - asset: images/beluga.jpeg
         caption: Imagine these were important files detailing features or architecture 
-
   "main.go":
     preview: full
     assets:
-      - asset: images/hehe.jpeg
-        caption: This is a cat
+      - asset: images/huh.jpeg
+        caption: Imagine this were something cool about this file
+  "showcase.go":
+    preview: full
+    assets: 
+      - asset: html/interactive.html
+        caption: You can add interactive demos too
+        height: 64
 
-# Displayed on a particular commit page.
-# commits:
-#   "2b223c1":
-#     - asset: screenshots/release.png
-#       caption: Result introduced by this commit
+
+# Displayed on a particular commit page
+commits:
+  "bdb3273":
+    - asset: images/andale.jpeg
+      caption: Imagine this were the result introduced by this commit
