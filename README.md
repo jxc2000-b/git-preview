@@ -1,6 +1,4 @@
 # Forked from [legit](https://github.com/icyphox/legit)
-
-------
 An opinionated take on what a git web frontend could be. Preview you repository in a customizeable fashion for easy deployment as a stripped-down showcase static website. 
 
 
@@ -62,3 +60,5 @@ cd .showcase/out && python3 -m http.server 5556
 - run: git-preview -config preview.yaml -export .showcase/out
 - run: npx wrangler pages deploy .showcase/out --project-name=<name>
 ```
+
+Much thanks to the original developers
