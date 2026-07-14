@@ -36,7 +36,11 @@ jobs:
           cache: true
 
       - name: Create bare preview repository
-        run: git clone --bare . preview-repos/git-preview
+        env:
+          REPOSITORY_DESCRIPTION: ${{ github.event.repository.description }}
+        run: |
+          git clone --bare . preview-repos/git-preview
+          printf '%s\n' "$REPOSITORY_DESCRIPTION" > preview-repos/git-preview/description
 
       - name: Generate static site
         run: go run . -config config.yaml -export showcase/out
