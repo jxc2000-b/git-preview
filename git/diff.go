@@ -47,28 +47,27 @@ func (g *GitRepo) Diff() (*NiceDiff, error) {
 		return nil, fmt.Errorf("commit object: %w", err)
 	}
 
-	patch := &object.Patch{}
 	commitTree, err := c.Tree()
-	parent := &object.Commit{}
-	if err == nil {
-		parentTree := &object.Tree{}
-		if c.NumParents() != 0 {
-			parent, err = c.Parents().Next()
-			if err == nil {
-				parentTree, err = parent.Tree()
-				if err == nil {
-					patch, err = parentTree.Patch(commitTree)
-					if err != nil {
-						return nil, fmt.Errorf("patch: %w", err)
-					}
-				}
-			}
-		} else {
-			patch, err = parentTree.Patch(commitTree)
-			if err != nil {
-				return nil, fmt.Errorf("patch: %w", err)
-			}
+	if err != nil {
+		return nil, fmt.Errorf("commit tree: %w", err)
+	}
+
+	parentTree := &object.Tree{}
+	var parent *object.Commit
+	if c.NumParents() != 0 {
+		parent, err = c.Parents().Next()
+		if err != nil {
+			return nil, fmt.Errorf("parent commit (is the repository shallow?): %w", err)
 		}
+		parentTree, err = parent.Tree()
+		if err != nil {
+			return nil, fmt.Errorf("parent tree: %w", err)
+		}
+	}
+
+	patch, err := parentTree.Patch(commitTree)
+	if err != nil {
+		return nil, fmt.Errorf("patch: %w", err)
 	}
 
 	diffs, _, err := gitdiff.Parse(strings.NewReader(patch.String()))
@@ -79,7 +78,7 @@ func (g *GitRepo) Diff() (*NiceDiff, error) {
 	nd := NiceDiff{}
 	nd.Commit.This = c.Hash.String()
 
-	if parent.Hash.IsZero() {
+	if parent == nil {
 		nd.Commit.Parent = ""
 	} else {
 		nd.Commit.Parent = parent.Hash.String()
