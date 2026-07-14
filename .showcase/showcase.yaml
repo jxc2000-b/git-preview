@@ -19,7 +19,7 @@ files:
     assets:
       - asset: images/huh.jpeg
         caption: Imagine this were something cool about this file
-  "showcase.go":
+  "showcase/showcase.go":
     preview: full
     assets: 
       - asset: html/interactive.html
