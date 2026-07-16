@@ -47,7 +47,7 @@ files:
     assets: 
       - asset: images/irrelevant.jpeg
         caption: I dont know whats going on here
-   "flake.nix":
+  "flake.nix":
     preview: full
     assets: 
       - asset: images/mewhen.jpeg
