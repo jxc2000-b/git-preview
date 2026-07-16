@@ -27,6 +27,31 @@ files:
     assets: 
       - asset: images/hehe.jpeg
         caption: Hmmmmm
+  "embed.go":
+    preview: full
+    assets: 
+      - asset: images/AAAAHHHH.jpeg
+        caption: This image could have been informative
+  "unveil.go":
+    preview: full
+    assets: 
+      - asset: images/hi.jpeg
+        caption: Im not that smart but im cool
+  "license":
+    preview: full
+    assets: 
+      - asset: images/fih.jpeg
+        caption: Thank you to the developers and maintainers of le git
+  "flake.lock":
+    preview: full
+    assets: 
+      - asset: images/irrelevant.jpeg
+        caption: I dont know whats going on here
+   "flake.nix":
+    preview: full
+    assets: 
+      - asset: images/mewhen.jpeg
+        caption: How it feels to ...
 
 commits:
   "bdb3273":
