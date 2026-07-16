@@ -85,7 +85,7 @@ commits:
     - asset: images/andale.jpeg
       caption: Imagine this were the result introduced by this commit
 ```
-## Commit and push your changes your bare clone
+## Commit and push your changes to your bare clone
 
 ```sh
 git add .showcase
@@ -104,9 +104,10 @@ git-preview -config config.yaml -export showcase/out # static build
 ```sh
 cd showcase/out && python3 -m http.server 5556
 ```
+> [!IMPORTANT]
+> There are multiple issues that will arise when setting up github pages this way, I recommend you copy the workaround [workflow file](.github/workflows/static.yml) used in this repository verbatim for now while I ship fixes.
 
 ## Example deploy with Github Pages
-
 ```yaml
 - uses: actions/setup-go@v5
 - run: go install github.com/jxc2000-b/git-preview@latest
