@@ -3,7 +3,7 @@ An opinionated take on what a static git web frontend could be. Preview you repo
 
 example: https://jxc2000-b.github.io/git-preview/
 
-host [images](https://jxc2000-b.github.io/git-preview/blob/main/main.go/) alongside your code, [interactive html demos](https://jxc2000-b.github.io/git-preview/blob/main/go.mod/) and truncate your code securely.
+host [images](https://jxc2000-b.github.io/git-preview/blob/main/main.go/) [alongside](https://jxc2000-b.github.io/git-preview/blob/main/config.yaml/) your code, [interactive html demos](https://jxc2000-b.github.io/git-preview/blob/main/go.mod/) and truncate your code securely.
 ## Adding it to a new project
 
 ```sh
